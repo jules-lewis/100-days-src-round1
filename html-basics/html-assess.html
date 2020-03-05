@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>HTML Assessment</title>
+    </head>
+
+    <body>
+
+        <form action="https://www.facebook.com/" method="get">
+
+            <h2>Course Sign Up Page</h2>
+
+            <p>Please note: First Name, Last Name, Email and Password are required fields</p>
+
+            <!-- TEXT INPUTS -->
+            <h3>Please input your email and password</h3>
+
+            <p>
+                <label for="input-first-name">First Name:</label>
+                <input id="input-first-name" type="text" name="userfirstname" placeholder="First name" required>
+
+                <label for="input-last-name">Last Name:</label>
+                <input id="input-last-name" type="text" name="userlastname" placeholder="Last name" required>
+            </p>
+
+            <p>
+                <label for="input-email">Email:</label>
+                <input id="input-email" type="email" name="useremail" placeholder="name@example.com" required>
+
+                <label for="input-password">Password:</label>
+                <input id="input-password" type="password" name="userpassword" value="" required>
+            </p>
+
+            <!-- RADIO BUTTONS -->
+            <p>Are you aged 18 or over?</p>
+
+            <label for="input-age-18">Yes:</label>
+            <input id="input-age-18" type="radio" name="user-18-or-over" value="yes" required>
+
+            <label for="input-age-under-18">No:</label>
+            <input id="input-age-under-18" type="radio" name="user-18-or-over" value="no">
+
+
+            <!-- DROPDOWN -->
+            <p>Do you have a credit card or PayPal?</p>
+
+            <select name="payment-method" id="" required>
+                <option value="">-----</option>
+                <option value="Credit Card">Credit Card</option>
+                <option value="PayPal">PayPal</option>
+                <option value="Neither">Neither</option>
+            </select>
+
+            <!-- SUBMIT BUTTON -->
+            <p><input type="submit" name="" value="Sign Up"></p>
+
+        </form>
+
+    </body>
+
+</html>
