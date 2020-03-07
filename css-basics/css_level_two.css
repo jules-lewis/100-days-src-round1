@@ -1,0 +1,43 @@
+body{
+    font-family: 'Amatic SC', cursive;
+}
+
+h1{
+    text-align: center;
+}
+
+p{
+    text-align: center;
+    font-size: 1.5em;
+}
+
+table{
+    width: 75%;
+    margin: auto;
+}
+
+td{
+    border: 0.2em solid white;
+    padding-top: 45%;
+    /* margin: 50px; */
+}
+
+#v1{
+    background-color: pink;
+}
+
+#v2{
+    background-color: red;
+}
+
+#v3{
+    background-color:green;
+}
+
+#v4{
+    background-color: blue;
+}
+
+#v5{
+    background-color: violet;
+}
