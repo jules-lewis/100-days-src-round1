@@ -1,0 +1,14 @@
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-c4 {
+    background-color: rgb(128, 128, 128);
+    border: 2px dashed black;
+    margin: 2px;
+    width: 70px; 
+    height: 70px; 
+    border-radius: 50%; 
+}
+  
