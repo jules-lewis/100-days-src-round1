@@ -28,7 +28,7 @@
 from random import shuffle
 
 # Two useful variables for creating Cards.
-SUITS = 'H D S C'.split()
+SUITS = 'H D S C'.split()    
 RANKS = '2 3 4 5 6 7 8 9 10 J Q K A'.split()
 
 class Deck:
@@ -63,10 +63,15 @@ class Hand:
         self.cards = hand
 
     def __len__(self):
-        return len(self.cards)
+        #create a hand, based on the list passed in
+        return (len(self.cards))
 
     def addCards(self, cards_to_add):
         self.cards.extend(cards_to_add)
+
+    def shuffle(self):
+        #shuffles the deck using Random
+        shuffle(self.cards)
 
 class Player:
     """
@@ -82,7 +87,7 @@ class Player:
         return(self.hand.cards.pop(0))
 
     def canDeal(self):
-        return (len(self.hand) > 0)
+        return  (len(self.hand) > 0)
 
 
 ######################
@@ -95,41 +100,49 @@ new_deck = Deck()
 new_deck.shuffle()
 hand_a = Hand(new_deck.split()[0])
 hand_b = Hand(new_deck.split()[1])
-player_1 = Player("Player 1", hand_a)
-player_2 = Player("Player 2", hand_b)
+player_1 = Player("Computer", hand_a)
+player_2 = Player("Human", hand_b)
 discards = []
+rounds = 0
 
-def cardAdmin(winningPlayer, losingPlayer, cardsToMove):
-    print(winningPlayer.name + " wins this round...")
-    winningPlayer.hand.addCards(cardsToMove)
-    print("{} has {} cards, {} has {}.".format(winningPlayer.name, len(winningPlayer.hand), losingPlayer.name, len(losingPlayer.hand)))
-    print("------------------------------------------------")        
-    cont = input("Press Enter to continue....")
-
-
-while (player_1.canDeal) and (player_2.canDeal):
+while (player_1.canDeal()) and (player_2.canDeal()) and (rounds < 500):
+    rounds += 1
     card_1 = player_1.dealCard()
     card_2 = player_2.dealCard()
     discards.append(card_1)
     discards.append(card_2)
     rank_1 = RANKS.index(card_1[0])
     rank_2 = RANKS.index(card_2[0])
-    print(player_1.name + " plays " + str(card_1))
-    print(player_2.name + " plays " + str(card_2))
+
     if rank_1 > rank_2:
-        cardAdmin(player_1, player_2, discards)
+        player_1.hand.addCards(discards)
         discards = []
     elif rank_2 > rank_1:
-        cardAdmin(player_2, player_1, discards)
+        player_2.hand.addCards(discards)
         discards = []
     else:
-        print("War! Both players turn a card face down and carry on.")
-        if (player_1.canDeal) and (player_2.canDeal):
+        #print("War! Both players turn a card face down and carry on.")
+        if (player_1.canDeal()) and (player_2.canDeal()):
             discards.append(player_1.dealCard())
             discards.append(player_2.dealCard())
 
-if player_1.canDeal:
-    print(player_1.name + " wins. " + player_2.name + " has no cards left.")
+    #Sometimes we get stuck in a loop, as the cards even out, so let's shuffle 
+    #each player's cards every fifty rounds to increase the chance of someone winning
+    if (rounds % 50 == 0):
+        if player_1.canDeal(): player_1.hand.shuffle
+        if player_2.canDeal(): player_2.hand.shuffle
+
+
+if (rounds >= 500):
+    print("After {} rounds, {} has {} cards, and {} has {} cards.".format(str(rounds), 
+                                                                          player_1.name,
+                                                                          len(player_1.hand),
+                                                                          player_2.name,
+                                                                          len(player_2.hand),
+                                                                          ))
 else:
-    print(player_2.name + " wins. " + player_1.name + " has no cards left.")
+    if len(player_1.hand) > len(player_2.hand):
+        print(player_1.name + " wins in " + str(rounds) + " turns. " + player_2.name + " hasn't got enough  cards left.")
+    else:
+        print(player_2.name + " wins in " + str(rounds) + " turns. " + player_1.name + " hasn't got enough  cards left.")
 
