@@ -37,3 +37,19 @@ python manage.py startapp <app_name>
 ```
 python manage.py runserver
 ```
+
+#### Models: To build database from models:
+From the project folder:
+```
+python manage.py migrate
+python manage.py makemigrations <app_name>
+python manage.py migrate
+```
+
+
+#### Models: Creating a SuperUser:
+From the project folder:
+```
+python manage.py createsuperuser
+```
+(enter user name, email address, and password at the prompt)
